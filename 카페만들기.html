@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>EDIYA Coffee Site</title>
+
+    <style>
+      :root {
+        --main-dark: #0b3c8c;
+        --main-light: #4da6ff;
+        --sub-white: #ffffff;
+        --sub-mint: #2ec4b6;
+        --point-red: #ff4d4d;
+        --point-yellow: #ffd60a;
+      }
+
+      body {
+        margin: 0;
+        font-family: sans-serif;
+        padding-bottom: 70px; /* 하단바 공간 */
+      }
+
+      /* 헤더 */
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        background: var(--main-dark);
+        color: white;
+      }
+
+      .login-btn {
+        cursor: pointer;
+      }
+
+      /* 로그인 모달 */
+      .login-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .login-box {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        width: 280px;
+      }
+
+      .login-box input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+
+      .login-box button {
+        width: 100%;
+        padding: 10px;
+        background: var(--main-dark);
+        color: white;
+        border: none;
+      }
+
+      /* 슬라이드 */
+      .slider {
+        text-align: center;
+        background: var(--main-light);
+        color: white;
+      }
+      .slider img {
+        width: 100%;
+      }
+
+      /* 신제품 */
+      .new-product {
+        padding: 20px;
+      }
+      .product-list {
+        display: flex;
+        justify-content: space-around;
+      }
+      .product-list img {
+        width: 120px;
+      }
+
+      /* 프로모션 */
+      .promo {
+        padding: 20px;
+        text-align: center;
+        background: var(--sub-mint);
+        color: white;
+      }
+      .promo img {
+        width: 100%;
+      }
+
+      /* 카테고리 */
+      .category-wrapper {
+        display: flex;
+        align-items: center;
+      }
+
+      .arrow {
+        padding: 0 10px;
+        font-weight: bold;
+      }
+
+      .category {
+        display: flex;
+        overflow-x: auto;
+        gap: 10px;
+      }
+
+      .category button {
+        width: 90px;
+        border: none;
+        border-radius: 15px;
+        background: var(--main-dark);
+        color: white;
+        padding: 10px;
+        cursor: pointer;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .category img {
+        width: 50px;
+        border-radius: 10px;
+      }
+
+      /* BEST */
+      .best {
+        padding: 20px;
+        text-align: center;
+      }
+      .best img {
+        width: 200px;
+      }
+
+      .cart-btn {
+        padding: 12px;
+        width: 100%;
+        background: var(--point-red);
+        color: white;
+        border: none;
+        border-radius: 8px;
+      }
+
+      /* 브랜드 */
+      .brand {
+        padding: 20px;
+        text-align: center;
+      }
+      .brand img {
+        width: 100%;
+      }
+
+      /* 푸터 */
+      .footer {
+        background: black;
+        color: white;
+        padding: 20px;
+        font-size: 12px;
+        text-align: center;
+      }
+
+      /* 하단 네비게이션 */
+      .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: white;
+        display: flex;
+        justify-content: space-around;
+        border-top: 1px solid #ddd;
+      }
+
+      .bottom-nav div {
+        text-align: center;
+        padding: 10px;
+        font-size: 12px;
+        cursor: pointer;
+      }
+
+      .bottom-nav div:hover {
+        color: var(--point-red);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 헤더 -->
+    <header class="header">
+      <div>☰</div>
+      <div>EDIYA COFFEE</div>
+      <div>
+        🔔 🛒
+        <span id="loginArea" class="login-btn">로그인</span>
+      </div>
+    </header>
+
+    <!-- 로그인 모달 -->
+    <div class="login-modal" id="loginModal">
+      <div class="login-box">
+        <h3>로그인</h3>
+        <input type="text" id="id" placeholder="아이디" />
+        <input type="password" id="pw" placeholder="비밀번호" />
+        <button onclick="login()">로그인</button>
+      </div>
+    </div>
+
+    <!-- 슬라이드 -->
+    <section class="slider">
+      <img src="Mochi.PNG" />
+      <h2>과일 쏙쏙 모찌떡<br />귀에는 파삭! 입안은 쫀-득!</h2>
+    </section>
+
+    <!-- 신제품 -->
+    <section class="new-product">
+      <h3>이달의 신제품</h3>
+      <div class="product-list">
+        <div>
+          <img src="Blue Lemon Ade.PNG" />
+          <p>펭도리 블루애플 에이드</p>
+        </div>
+        <div>
+          <img src="Butter.PNG" />
+          <p>연유 뿌린 버터떡</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 프로모션 -->
+    <section class="promo">
+      <img src="PocketMon.PNG" />
+      <h3>이디야에서 포켓몬을 만나 보세요!</h3>
+    </section>
+
+    <!-- 카테고리 -->
+    <section class="category-wrapper">
+      <div class="arrow">&lt;</div>
+
+      <div class="category">
+        <button onclick="goCategory('포켓몬')">
+          <img src="PocketMon.PNG" />포켓몬
+        </button>
+
+        <button onclick="goCategory('커피')">
+          <img src="EDIA COFFEE 33.PNG" />커피
+        </button>
+
+        <button onclick="goCategory('Tea')">
+          <img src="Milk Tea.PNG" />Tea
+        </button>
+
+        <button onclick="goCategory('에이드')">
+          <img src="Blue Lemon Ade.PNG" />에이드
+        </button>
+
+        <button onclick="goCategory('디카페인')">
+          <img src="TEA.PNG" />디카페인
+        </button>
+
+        <button onclick="goCategory('베이커리')">
+          <img src="Salt Bread.PNG" />베이커리
+        </button>
+      </div>
+
+      <div class="arrow">&gt;</div>
+    </section>
+
+    <!-- BEST -->
+    <section class="best">
+      <h3>Best & NEW</h3>
+      <img src="EDIA COFFEE 1.PNG" />
+      <h4>(L) ICED 피카츄 애플베리셔벗</h4>
+      <p>상큼함과 달콤함이 어우러지는 메뉴</p>
+      <button class="cart-btn" onclick="addCart()">장바구니 담기</button>
+    </section>
+
+    <!-- 브랜드 -->
+    <section class="brand">
+      <img src="EDIYA.PNG" />
+      <p>이디야 커피는 2001년 설립된 대한민국 커피 브랜드입니다.</p>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+      <p>개인정보처리방침</p>
+      <p>(주)이디야 서울특별시 강남구 논현로 636</p>
+    </footer>
+
+    <!-- 하단 메뉴 -->
+    <div class="bottom-nav">
+      <div onclick="movePage('홈')">🏠<br />홈</div>
+      <div onclick="movePage('이벤트')">🎉<br />이벤트</div>
+      <div onclick="movePage('스탬프')">⭐<br />스탬프</div>
+      <div onclick="movePage('쿠폰')">🎫<br />쿠폰</div>
+      <div onclick="movePage('My')">👤<br />My</div>
+    </div>
+
+    <script>
+      // 로그인 열기
+      document.getElementById("loginArea").onclick = openLogin;
+
+      function openLogin() {
+        document.getElementById("loginModal").style.display = "flex";
+      }
+
+      // 로그인
+      function login() {
+        let id = document.getElementById("id").value;
+        let pw = document.getElementById("pw").value;
+
+        if (id && pw) {
+          localStorage.setItem("user", id);
+          alert("로그인 성공");
+          document.getElementById("loginModal").style.display = "none";
+          updateLoginUI();
+        }
+      }
+
+      // 로그아웃
+      function logout() {
+        localStorage.removeItem("user");
+        alert("로그아웃");
+        updateLoginUI();
+      }
+
+      // 로그인 유지 UI
+      function updateLoginUI() {
+        let user = localStorage.getItem("user");
+        let area = document.getElementById("loginArea");
+
+        if (user) {
+          area.innerHTML = user + "님 | 로그아웃";
+          area.onclick = logout;
+        } else {
+          area.innerHTML = "로그인";
+          area.onclick = openLogin;
+        }
+      }
+
+      // 카테고리 클릭
+      function goCategory(name) {
+        alert(name + " 페이지 이동");
+      }
+
+      // 하단 메뉴 이동
+      function movePage(name) {
+        alert(name + " 페이지 이동");
+      }
+
+      // 장바구니
+      function addCart() {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push("상품");
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert("장바구니 담김!");
+      }
+
+      // 초기 실행
+      updateLoginUI();
+    </script>
+  </body>
+</html>
